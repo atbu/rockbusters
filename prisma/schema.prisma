@@ -14,23 +14,25 @@ datasource db {
 }
 
 model Episode {
-  id            Int     @id @default(autoincrement())
-  format        Format
-  series        Int
-  episode       Int
-  release_date  DateTime
-  winner        String?
-  prize         String?
-  
+  id           Int      @id @default(autoincrement())
+  format       Format
+  series       Int
+  episode      Int
+  release_date DateTime
+  winner       String?
+  prize        String?
+  Rockbusters  Rockbuster[]
 }
 
 model Rockbuster {
-  id              Int @id @default(autoincrement())
-  clue            String
-  initials        String[]
-  answer          String
-  karl_comment    String?
-  ricky_approval  RickyApproval?
+  id             Int            @id @default(autoincrement())
+  episode        Episode        @relation(fields: [episodeId], references: [id])
+  clue           String
+  initials       String[]
+  answer         String
+  karl_comment   String?
+  ricky_approval RickyApproval?
+  episodeId      Int
 }
 
 enum Format {
