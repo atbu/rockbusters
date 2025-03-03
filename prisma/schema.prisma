@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Episode {
+  id            Int     @id @default(autoincrement())
+  format        Format
+  series        Int
+  episode       Int
+  release_date  DateTime
+  winner        String?
+  prize         String?
+  
+}
+
+model Rockbuster {
+  id              Int @id @default(autoincrement())
+  clue            String
+  initials        String[]
+  answer          String
+  karl_comment    String?
+  ricky_approval  RickyApproval?
+}
+
+enum Format {
+  XFM
+  PODCAST
+}
+
+enum RickyApproval {
+  TRUE
+  FALSE
+  UNKNOWN
+}
