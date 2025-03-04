@@ -6,7 +6,10 @@ export default async function Home() {
   return (
     <div className="h-screen flex items-center justify-center">
       <p className="text-xl">Rockbusters</p>
-      <p>{rockbuster.test}</p>
+      <br />
+      <p>{rockbuster.clue}</p>
+      <br />
+      <p>{rockbuster.winner}</p>
     </div>
   );
   
