@@ -1,5 +1,4 @@
 import prisma from 'lib/prisma'
-
 import AnswerBox from './components/AnswerBox';
 
 export const dynamic = 'force-dynamic';
