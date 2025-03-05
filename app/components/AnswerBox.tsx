@@ -31,7 +31,7 @@ const AnswerBox = ({rockbuster}: Props) => {
         <button className="btn btn-success" onClick={nextButtonClicked}>Next</button>
         <br />
         <p>Correct!</p>
-        <p>This Rockbuster was featured on {new Date(rockbuster.episode.release_date).toLocaleDateString('en-GB')}.</p>
+        <p>This Rockbuster was featured on S{rockbuster.episode.series}E{rockbuster.episode.episode} ({new Date(rockbuster.episode.release_date).toLocaleDateString('en-GB')}).</p>
         <p>The episode was won by {rockbuster.episode.winner}, who won {rockbuster.episode.prize}.</p>
       </div>
     </>
