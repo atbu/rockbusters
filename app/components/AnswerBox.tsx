@@ -15,7 +15,7 @@ const AnswerBox = ({ rockbuster }: { rockbuster: RockbusterWithEpisode }) => {
     }
   }
 
-  function nextButtonClicked(e: React.MouseEvent<HTMLButtonElement>) {
+  function nextButtonClicked() {
     window.location.reload();
   }
 
