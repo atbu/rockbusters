@@ -2,7 +2,7 @@ import AnswerBox from './components/AnswerBox';
 
 export default async function Home() {
 
-  const data = await fetch('http://localhost:3000/api/getRandomRockbuster');
+  const data = await fetch('localhost:3000/api/getRandomRockbuster');
   const rockbuster = await data.json();
 
   return (
