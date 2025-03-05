@@ -14,12 +14,13 @@ const AnswerBox = ({rockbuster}: Props) => {
       const match = rockbuster.answer.toLowerCase() == target.value.toLowerCase();
       if (match) {
         target.disabled = true;
+        document.getElementById('skip').classList.add('hidden');
         document.getElementById('shownOnCorrect')?.classList.remove('hidden');
       }
     }
   }
 
-  function nextButtonClicked() {
+  function nextOrSkipButtonClicked() {
     window.location.reload();
   }
 
@@ -27,8 +28,9 @@ const AnswerBox = ({rockbuster}: Props) => {
     <>
       <p>{rockbuster.clue} ({rockbuster.initials.toString()})</p>
       <input type="text" placeholder="Type answer here" className="input" onKeyUp={keyUp} />
+      <button className="btn" onClick={nextOrSkipButtonClicked} id="skip">Skip</button>
       <div className="hidden" id="shownOnCorrect">
-        <button className="btn btn-success" onClick={nextButtonClicked}>Next</button>
+        <button className="btn btn-success" onClick={nextOrSkipButtonClicked}>Next</button>
         <br />
         <p>Correct!</p>
         <p>This Rockbuster was featured on S{rockbuster.episode.series}E{rockbuster.episode.episode} ({new Date(rockbuster.episode.release_date).toLocaleDateString('en-GB')}).</p>
