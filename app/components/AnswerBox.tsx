@@ -1,23 +1,35 @@
 "use client"
 
-import React, { useEffect } from 'react';
-import type { Rockbuster } from '@prisma/client';
+import React from 'react';
+import type { RockbusterWithEpisode } from 'types/types';
 
-const AnswerBox = ({ rockbuster }: { rockbuster: Rockbuster }) => {
+const AnswerBox = ({ rockbuster }: { rockbuster: RockbusterWithEpisode }) => {
   function keyUp(e: React.KeyboardEvent<HTMLInputElement>) {
-    const target = e.target as HTMLInputElement;
-    const match = rockbuster.answer.toLowerCase() == target.value.toLowerCase();
-    if (match) {
-      target.classList.add('input-success');
-    } else {
-      target.classList.remove('input-success');
+    if(e.key == 'Enter') {
+      const target = e.target as HTMLInputElement;
+      const match = rockbuster.answer.toLowerCase() == target.value.toLowerCase();
+      if (match) {
+        target.disabled = true;
+        document.getElementById('shownOnCorrect')?.classList.remove('hidden');
+      }
     }
+  }
+
+  function nextButtonClicked(e: React.MouseEvent<HTMLButtonElement>) {
+    window.location.reload();
   }
 
   return (
     <>
-      <p>{rockbuster.clue}</p>
+      <p>{rockbuster.clue} ({rockbuster.initials.toString()})</p>
       <input type="text" placeholder="Type answer here" className="input" onKeyUp={keyUp} />
+      <div className="hidden" id="shownOnCorrect">
+        <button className="btn btn-success" onClick={nextButtonClicked}>Next</button>
+        <br />
+        <p>Correct!</p>
+        <p>This Rockbuster was featured on {new Date(rockbuster.episode.release_date).toLocaleDateString('en-GB')}.</p>
+        <p>The episode was won by {rockbuster.episode.winner}, who won {rockbuster.episode.prize}.</p>
+      </div>
     </>
   )
 }
