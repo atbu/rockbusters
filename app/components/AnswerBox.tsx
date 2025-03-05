@@ -1,5 +1,6 @@
 "use client"
 
+import { Format } from '@prisma/client';
 import React from 'react';
 import type { RockbusterWithEpisode } from 'types/types';
 
@@ -33,7 +34,7 @@ const AnswerBox = ({rockbuster}: Props) => {
         <button className="btn btn-success" onClick={nextOrSkipButtonClicked}>Next</button>
         <br />
         <p>Correct!</p>
-        <p>This Rockbuster was featured on S{rockbuster.episode.series}E{rockbuster.episode.episode} ({new Date(rockbuster.episode.release_date).toLocaleDateString('en-GB')}).</p>
+        <p>This Rockbuster was featured on S{rockbuster.episode.series}E{rockbuster.episode.episode} {rockbuster.episode.format == Format.XFM ? "of the Xfm radio show" : "of The Ricky Gervais Show podcast"} ({new Date(rockbuster.episode.release_date).toLocaleDateString('en-GB')}).</p>
         <p>The episode was won by {rockbuster.episode.winner}, who won {rockbuster.episode.prize}.</p>
       </div>
     </>
