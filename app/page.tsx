@@ -1,3 +1,5 @@
+import AnswerBox from './components/AnswerBox';
+
 export default async function Home() {
 
   const data = await fetch('http://localhost:3000/api/getRandomRockbuster');
@@ -7,7 +9,7 @@ export default async function Home() {
     <>
       <p className="text-xl">Rockbusters</p>
       <br />
-      <p>{rockbuster.episode.winner}</p>
+      <AnswerBox rockbuster={rockbuster} />
     </>
   );
   
