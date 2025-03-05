@@ -1,7 +1,6 @@
 import prisma from 'lib/prisma'
 
 import AnswerBox from './components/AnswerBox';
-import { RockbusterWithEpisode } from '@/types/types';
 
 export const dynamic = 'force-dynamic';
 
